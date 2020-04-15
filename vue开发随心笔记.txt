@@ -1,0 +1,104 @@
+
+http://www.jinneng-sj.com/
+
+
+http://www.jienengjc.com/index.html
+
+
+vue 
+
+启动node.js代码，vue 项目
+
+vue 3.0 启动项目自动打开浏览器设置 npm run serve：
+
+
+配置文件 vue.config.js文件的配置
+
+devServer: {
+        open: true,
+}
+
+
+
+
+2.vue启动项目报错：npm ERR! missing script: serve
+npm run serve 
+
+问题原因：
+在配置文件中的服务器名称和你启动命令中的名称不匹配。
+
+解决方法：
+查看配置文件package.json 中服务器名称，并修改启动命令。
+
+
+
+
+3.配置默认访问index页面
+main.js是我们的入口文件，主要作用是初始化vue实例并使用需要的插件，这里new Vue代表新建vue对象。
+App.vue是我们的主组件，所有页面都是在App.vue下进行切换的。vue中的页面都是单页面，但是都是index.html上承载的，
+这就是为什么你能在index.html中看到id为app的div，其实就是和App.vue对应，App.vue里面的标签将会把路由相关内容（index.js）
+渲染在这个地方，总之index.html是项目运行的入口。
+
+项目加载的过程是index.tml->main.js->app.vue->index.js->单页面（XXX.vue）
+
+
+
+
+4、异常Component template should contain exactly one root element. If you are using v-if on multiple elements, use v-else-if to chain them instead.
+　刚开始这样写得时候是没有发现啥错误的，我只是在后面添加一个<div></div>或是加了别的就说出现这个错误
+
+<template>
+    <el-button type="primary">{{test1}}</el-button>
+</template>
+　　原来vue模板只能有一个根对象
+
+所以你想要出现正常的效果，你的用一个div来或是别的标签来包裹全部的元素
+
+正确的写法就是：
+
+
+<template>
+    <div>
+        <el-button type="primary">haha1</el-button>
+        <div>hahhaa</div>
+        <el-input type="text" placeholder="测试一下"></el-input>
+        <h1>{{test1}}</h1>
+    </div>
+</template>
+
+
+
+
+Vue多视图，怎么在一个页面里面展示多个模板
+
+
+   <router-view class='abc'  name='a1'></router-view>
+
+<router-view class='abc'  name='a2'></router-view>
+
+<router-view class='abc'  name='a3'></router-view>
+
+
+在router.js里面配置
+
+ 
+
+router:[
+
+  {
+
+   path:'/',
+
+   name:'yaohuiqian',
+
+   components:{
+
+        a1:mobana,
+
+        a2:mobanb,
+
+        a3:mobanc
+
+}
+}
+]
