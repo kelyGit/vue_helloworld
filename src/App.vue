@@ -1,12 +1,21 @@
 <template>
   <div id="app">
     <router-view class='top'  name='topHome'></router-view>
-    <router-view class='bodyHome'  name='bodyHome'></router-view>
+    <!--<router-view class='bodyHome'  name='bodyHome'></router-view>-->
   </div>
 </template>
 
 <script>
-export default {
+  import "./../h5/css/common.css";
+  import "./../h5/css/index.css";
+
+  import "./../h5/js/jquery-1.8.3.min.js";
+  import "./../h5/js/common.js"
+  import "./../h5/js/TouchSlide.1.1.js";
+  import  "./../h5/js/jquery.SuperSlide.2.1.1.js";
+  import "./../h5/js/js.js";
+
+  export default {
   name: 'App'
 }
 </script>

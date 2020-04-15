@@ -18,7 +18,7 @@
     <div class="wrap clearfix">
       <div class="logo fl">
         <a href="javascript:;" class="clearfix">
-          <div class="logoimg fl"><img src="images/logo.png" alt="广州某某某防水科技有限公司"></div>
+          <div class="logoimg fl"><img src="../../../h5/images/logo.png" alt="广州某某某防水科技有限公司"></div>
           <div class="company_name fl">
             <p class="company_name_title">广州某某某防水科技有限公司</p>
             <p class="company_name_ps">免费提供全方位的技术和质量管控方案</p>
@@ -352,6 +352,18 @@
 
 <script>
   import "../../../h5/css/common.css";
+  import "../../../h5/css/index.css";
+
+  import "../../../h5/js/jquery-1.8.3.min.js";
+  import "../../../h5/js/common.js"
+  import "../../../h5/js/TouchSlide.1.1.js";
+  import  "../../../h5/js/jquery.SuperSlide.2.1.1.js";
+  import "../../../h5/js/js.js";
+
+
+
+
+
   export default {
     name: 'headTop'
   }

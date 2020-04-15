@@ -13,6 +13,8 @@ vue
 linux
 
 运行vue  ： nohup npm run dev &
+
+
 www.kingzao.cn:8080
 
 
@@ -20,7 +22,7 @@ www.kingzao.cn:8080
 
 
 
-
+linux命令 --------------------------------------------------------------------
 
 平滑重启
 kill -HUP{Nginx主进程号}
@@ -33,15 +35,140 @@ kill -HUP{Nginx主进程号}
 
 ps -ef | grep nginx
 
+新建目录    mkdir 目录名
+查询 pwd  
+删除目录  rm -r 目录名  
+ 
+保存，但不退出vi                          :w
+ 
+保存并退出vi                                 :wq
+ 
+退出vi，但不保存更改                   :q!
+ 
+用其他文件名保存                         :w filename
+ 
+在现有文件中保存并覆盖该文件    :w! filename
 
 
 
+git命令-----------------------------------------------------------------------------------------------------------
+git强制覆盖本地命令（单条执行）：
+git fetch --all && git reset --hard origin/master && git pull
+
+========================================
+2、linux上安装git(客户端)及GitHub的配置
+在linix上安装git时可能出现：-bash: git: command not found 错误 即找不到命令
+
+ 
+
+Centos 7 64位：
+
+分别执行：
+
+wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+rpm -ivh epel-release-latest-7.noarch.rpm
+Centos 6 32位:
+
+get http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
+rpm -ivh epel-release-6-8.noarch.rpm
+通过git安装命令:
+
+yum install -y git
+安装完成进行查看：
+
+git version
+输出了版本号表示安装成功
+
+为了保证git服务器和我们自己的测试服务器能正常通信所以需要填入公钥信息
+
+由于git的认证授权是基于公钥和私钥的体系，所以需要授权证书来保证测试服务器和git服务器的正常授信
+
+生成授权证书:
+
+ssh-keygen -t rsa -C “xxxxxx@qq.com”
+接下来一路enter下一步即可：
+
+通过命令：
+
+cd ~/.ssh/ 
+在通过ls或者ll命令查看列表，可以发现有2个文件：
+
+一个是id_rsa、id_rsa.pub 分别为私钥和公钥
+
+
+通过编辑器：
+vim id_rsa.pub
+或
+cat id_rsa.pub
+再将公钥信息拷贝，接下来登录GitHub 选择→settings→SSH and GPG keys →New SSH key，title随便输入，将以上拷贝的公钥信息填入 最后Add SSH key
+最后到控制台进行测试：
+ssh git@github.com
+接下来会看到：
+The authenticity of host 'github.com (52.74.223.119)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+RSA key fingerprint is MD5:16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+输入yes
+
+看到如下信息表示成功：
+
+Warning: Permanently added 'github.com,xxxxxx' (RSA) to the list of known hosts.
+
+PTY allocation request failed on channel 0
+
+Hi wanghaiy! You've successfully authenticated, but GitHub does not provide shell access.
+
+Connection to github.com closed.
+
+ 
+
+至此就完成了git的安装与GitHub的配置
 
 
 
+vue 问题----------------------------------------------------------------------------------------------------------
 
-vue 
+===========================================================
+==.上传到服务器，并解压
+tar -xvf node-v10.15.3-linux-x64.tar.xz ,将解压出来的文件夹改个名mv node-v10.15.3-linux-x64 nodejs
 
+3.配置环境变量
+
+ln -s nodejs位置/bin/npm /usr/local/bin/
+ln -s nodejs位置/bin/node /usr/local/bin/
+
+4.查看安装是否正确node -v,出现node版本信息则正确
+
+5.安装pm2
+
+npm install pm2 -g
+//配置pm2全局环境
+ln -s nodejs位置/bin/pm2 /usr/local/bin/pm2
+6.pm2常用操作
+
+   6.1 pm2 start bin/www 或 pm2 start app.js  启动进程/应用
+   6.2 pm2 start app.js --name wb123  重命名进程/应用                  
+   6.3 pm2 start bin/www --watch  添加进程/应用 watch              
+   6.4 pm2 stop www  结束进程/应用                    
+   6.5 pm2 stop all  结束所有进程/应用                 
+   6.6 pm2 delete www  删除进程/应用                     
+   6.7 pm2 delete all  删除所有进程/应用                    
+   6.8 pm2 list  列出所有进程/应用                 
+   6.9 pm2 describe www  查看某个进程/应用具体情况          
+   6.10 pm2 monit  查看进程/应用的资源消耗情况       
+   6.11 pm2 logs  查看pm2的日志                    
+   6.12 pm2 logs www  若要查看某个进程/应用的日志,使用  
+   6.13 pm2 restart www  重新启动进程/应用                
+   6.14 pm2 restart all  重新启动所有进程/应用            
+7.pm2配置多线程
+
+pm2 start app.js -i 0 //-i后面的数字为0则是根据cpu线程数智能开启，也可以自己指定开启的线程数。
+
+pm2 scale app.js +3 //调整线程数量，在当前基础上加3个工作线程。
+
+==========================================
 启动node.js代码，vue 项目
 
 vue 3.0 启动项目自动打开浏览器设置 npm run serve：
@@ -140,4 +267,18 @@ router:[
 
 
 5.VUE前端代码打包后上传到服务器上js css 文件404
+
+
+===============
+6、Vue 请求数据时报错：This dependency was not found:
+
+ 其实报这个错误就是因为没有安装依赖关系，安装以下依赖就可以了。在vue-cli中默认没有scss-loader,scss-loader又需要node-sass，只安装scss-loader是不行的。另外webpack就不需要配置了，因为vue-cli会帮你配置安装的loader。
+在命令行中分别输入一下命令：
+npm install node-sass --save cnpm
+npm install sass-loader --save cnpm
+npm install scss --save cnpm
+npm install scss-loader --save cnpm
+
+
+vue引用插件的方法
 
