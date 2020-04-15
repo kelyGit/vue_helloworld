@@ -4,6 +4,41 @@ http://www.jinneng-sj.com/
 
 http://www.jienengjc.com/index.html
 
+王龙阿里云：
+
+www.kingzao.cn  22
+vue
+vue
+
+linux
+
+运行vue  ： nohup npm run dev &
+www.kingzao.cn:8080
+
+
+
+
+
+
+
+
+平滑重启
+kill -HUP{Nginx主进程号}
+
+
+重启命令
+/ngingx /sbin/nginx -s reload
+
+查看进程命令
+
+ps -ef | grep nginx
+
+
+
+
+
+
+
 
 vue 
 
@@ -102,3 +137,7 @@ router:[
 }
 }
 ]
+
+
+5.VUE前端代码打包后上传到服务器上js css 文件404
+

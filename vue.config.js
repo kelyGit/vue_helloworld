@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-    baseUrl: '/front/',   // 基本路径
+    //baseUrl: '/front/',   // 基本路径
     outputDir: 'dist', // 输出文件目录
     assetsDir: 'static',
     lintOnSave: false, // eslint-loader 是否在保存的时候检查
@@ -71,6 +71,7 @@ module.exports = {
     // webpack-dev-server 相关配置
     devServer: {
         // open: process.platform === 'darwin',
+
         host: '0.0.0.0', // 允许外部ip访问
         port: 8099, // 端口
         https: false, // 启用https
@@ -78,19 +79,9 @@ module.exports = {
             warnings: true,
             errors: true
         }, // 错误、警告在页面弹出
-        proxy: {
-            '/admin': {
-                // target: 'http://192.168.1.101:9998',
-                // target: 'https://vems-dev.infinitus.com.cn',
-                // target: 'https://10.87.132.41:9998',
-                target: 'http://localhost:9998',
-                changeOrigin: true, // 允许websockets跨域
-                // ws: true,
-                pathRewrite: {
-                    '^/admin': '/admin'
-                }
-            }
-        } // 代理转发配置，用于调试环境
+
+      disableHostCheck: true,
+
     },
     // 第三方插件配置
     pluginOptions: {}
