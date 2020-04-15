@@ -53,7 +53,7 @@ ps -ef | grep nginx
 
 git命令-----------------------------------------------------------------------------------------------------------
 git强制覆盖本地命令（单条执行）：
-git fetch --all && git reset --hard origin/master && git pull
+git fetch --all && git reset --hard origin/dev && git pull
 
 ========================================
 2、linux上安装git(客户端)及GitHub的配置
