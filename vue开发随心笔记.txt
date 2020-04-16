@@ -10,6 +10,9 @@ www.kingzao.cn  22
 vue
 vue
 
+获得root
+4845664.  直接用su  
+
 linux
 
 运行vue  ： nohup npm run dev &
@@ -39,6 +42,7 @@ ps -ef | grep nginx
 查询 pwd  
 删除目录  rm -r 目录名  
  
+ vim---------------------------------------
 保存，但不退出vi                          :w
  
 保存并退出vi                                 :wq
@@ -49,6 +53,12 @@ ps -ef | grep nginx
  
 在现有文件中保存并覆盖该文件    :w! filename
 
+=================================================
+which svn
+结果会显示：
+/usr/bin/svn
+
+whereis svn
 
 
 git命令-----------------------------------------------------------------------------------------------------------
@@ -144,8 +154,13 @@ ln -s nodejs位置/bin/node /usr/local/bin/
 5.安装pm2
 
 npm install pm2 -g
+
+看输出日志有安装目录
 //配置pm2全局环境
 ln -s nodejs位置/bin/pm2 /usr/local/bin/pm2
+
+ln -s /usr/bin/pm2  /usr/local/bin/pm2
+
 6.pm2常用操作
 
    6.1 pm2 start bin/www 或 pm2 start app.js  启动进程/应用
