@@ -1,6 +1,8 @@
 <template>
+  <!--<v-html-panel  u="../h5Index/index.html"></v-html-panel>-->
   <div id="app">
-    <router-view class='top'  name='topHome'></router-view>
+    <router-view class='top'  name='ImposrtINdexH5'></router-view>
+    <!--<router-view class='top'  name='topHome'></router-view>-->
     <!--<router-view class='bodyHome'  name='bodyHome'></router-view>-->
   </div>
 </template>
@@ -16,7 +18,9 @@
   import "./../h5/js/js.js";
 
   export default {
-  name: 'App'
+  name: 'App',
+
+
 }
 </script>
 
