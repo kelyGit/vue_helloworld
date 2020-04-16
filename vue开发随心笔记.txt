@@ -161,6 +161,9 @@ ln -s nodejs位置/bin/pm2 /usr/local/bin/pm2
 
 ln -s /usr/bin/pm2  /usr/local/bin/pm2
 
+覆盖路径
+ln -sf  /usr/bin/pm2  /usr/local/bin/pm2
+
 6.pm2常用操作
 
    6.1 pm2 start bin/www 或 pm2 start app.js  启动进程/应用
@@ -297,3 +300,57 @@ npm install scss-loader --save cnpm
 
 vue引用插件的方法
 
+
+==============================================================
+【已解决】让npm run dev在Linux后台 持久运行。
+原创黑夜的风 最后发布于2018-06-21 17:19:17 阅读数 17287  收藏
+展开
+命令行输入：
+
+which nohup
+复制这个地址。一般是/usr/bin
+
+/usr/bin/nohup
+
+
+cd
+vi .bash_profile
+
+vi ~/.bash_profile
+1
+在它的最后一行，即 PATH=$PATH:$HOME/bin 的后面添加刚才查询的地址:
+
+就像这样 PATH=$PATH:$HOME/bin:/usr/bin
+
+
+即：
+加载环境变量
+source ~/.bash_profile
+ 
+
+cd 回到你的项目目录。
+
+ 
+
+如果你想记录日志文件【新建日志记录文件】
+
+touch my.log
+chmod u+w my.log
+nohup npm run dev > my.log 2>my.log & exit
+如果没有报错，就成功了。此时可以看到网页运行成功。
+
+最后，一定要控制台执行exit，退出登录。
+
+【不记录日志】
+
+nohup npm run dev >/dev/null 2>&1 & exit
+ 
+关闭 Node 进程
+输入 ps -A 调出任务管理器，kill 掉 node 进程。
+
+ ps -A | grep  node
+
+ 
+————————————————
+版权声明：本文为CSDN博主「黑夜的风」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/chanlingmai5374/java/article/details/80762983
